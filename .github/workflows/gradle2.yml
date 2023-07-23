@@ -26,5 +26,5 @@ jobs:
         
       - name: deploy
         run: |
-          chmod -x ./build/libs/DigginRoom-0.0.1-SNAPSHOT.jar
-          java -jar ./build/libs/DigginRoom-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod &
+          chmod -x build/libs/DigginRoom-0.0.1-SNAPSHOT.jar
+          java -jar build/libs/DigginRoom-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod &
