@@ -1,9 +1,7 @@
-name: Java CI with Gradle
+name: CICI
 
 on:
   workflow_dispatch:
-  push:
-  pull_request:
 permissions:
   contents: read
 jobs:
