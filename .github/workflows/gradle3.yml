@@ -15,20 +15,18 @@ jobs:
       - name: Check
         run: echo "${{ steps.check.outputs.status }}"
       
-      - name: Notify if status is not 200
+      - name: Normal Slack notification
+        if: steps.check.outputs.status == '200'
         uses: act10ns/slack@v1
         with:
-          status: ${{ steps.check.outputs.status != '200' }}
+          status: ${{ job.status }}
           steps: ${{ toJson(steps) }}
-        if: ${{ steps.check.outputs.status != '200' }}
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          token: ${{ secrets.SLACK_WEBHOOK_URL }} # replace this with your slack token
 
-      - name: Notify if status is 200
+      - name: Error Slack notification
+        if: steps.check.outputs.status != '200'
         uses: act10ns/slack@v1
         with:
-          status: ${{ steps.check.outputs.status == '200' }}
+          status: failure
           steps: ${{ toJson(steps) }}
-        if: ${{ steps.check.outputs.status == '200' }}
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          token: ${{ secrets.SLACK_WEBHOOK_URL }} # replace this with your slack token
