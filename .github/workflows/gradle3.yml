@@ -1,4 +1,4 @@
-name: Check Naver HTTP Status
+name: API-HealthCheck
 
 on:
   workflow_dispatch:
@@ -12,12 +12,14 @@ jobs:
       - name: Check HTTP status
         id: check
         run: echo "status=$(curl -o /dev/null -s -w \"%{http_code}\n\" https://ec2-43-200-158-138.ap-northeast-2.compute.amazonaws.com/join/exist?username=admin1234)">>$GITHUB_OUTPUT
+      - name: Check
+        run: echo "${{ steps.check.outputs.status }}"
       
       - name: Notify if status is not 200
         uses: act10ns/slack@v1
         with:
           status: ${{ steps.check.outputs.status == '200' && 'success' || 'failure' }}
           steps: ${{ toJson(steps) }}
-        if: ${{ steps.check.outputs.status != '200' }}
+        if: ${{ steps.check.outputs.status == '200' }}
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
