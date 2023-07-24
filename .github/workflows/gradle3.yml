@@ -19,7 +19,7 @@ jobs:
         if: steps.check.outputs.status == '200'
         uses: slackapi/slack-github-action@v1.24.0
         with:
-          # For posting a rich message using Block Kit
+          text: "API Server Status - Normal Operations"
           payload: |
             {
               "blocks": [
@@ -27,7 +27,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "API Server Status - Normal Operations "
+                    "text": "API Server Status - Normal Operations"
                   }
                 }
               ]
@@ -39,7 +39,7 @@ jobs:
         if: steps.check.outputs.status != '200'
         uses: slackapi/slack-github-action@v1.24.0
         with:
-          # For posting a rich message using Block Kit
+          text: "API Server Status - Service Interruption"
           payload: |
             {
               "blocks": [
