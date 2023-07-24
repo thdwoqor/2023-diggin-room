@@ -16,7 +16,7 @@ jobs:
         run: echo "${{ steps.check.outputs.status }}"
       
       - name: Normal Slack notification
-        if: steps.check.outputs.status == "200"
+        if: steps.check.outputs.status == '200'
         uses: slackapi/slack-github-action@v1.24.0
         with:
           # For posting a rich message using Block Kit
@@ -37,7 +37,7 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - name: Error Slack notification 
-        if: steps.check.outputs.status != "200"
+        if: steps.check.outputs.status != '200'
         uses: slackapi/slack-github-action@v1.24.0
         with:
           # For posting a rich message using Block Kit
