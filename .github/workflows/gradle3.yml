@@ -18,9 +18,8 @@ jobs:
       - name: Notify if status is not 200
         uses: act10ns/slack@v1
         with:
-          channel: '#your-channel'
-          message: 'HTTP Status Error: Received ${ { steps.check.outputs.status } }'
-          color: '#ff0000'  # Red for error
+#           status: ${{ steps.check.outputs.status == '200' }}
+          steps: ${{ toJson(steps) }}
         if: ${{ steps.check.outputs.status != '200' }}
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -28,9 +27,8 @@ jobs:
       - name: Notify if status is 200
         uses: act10ns/slack@v1
         with:
-          channel: '#your-channel'
-          message: 'HTTP Status Normal: Received ${ { steps.check.outputs.status } }'
-          color: '#36a64f'  # Green for success
+#           status: ${{ steps.check.outputs.status == '200' }}
+          steps: ${{ toJson(steps) }}
         if: ${{ steps.check.outputs.status == '200' }}
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
