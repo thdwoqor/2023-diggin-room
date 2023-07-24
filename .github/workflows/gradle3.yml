@@ -18,8 +18,8 @@ jobs:
       - name: Notify if status is not 200
         uses: act10ns/slack@v1
         with:
-          status: ${{ steps.check.outputs.status == '200' && 'success' || 'failure' }}
+          status: ${{ steps.check.outputs.status == 200 && 'success' || 'failure' }}
           steps: ${{ toJson(steps) }}
-        if: ${{ steps.check.outputs.status == '200' }}
+        if: ${{ steps.check.outputs.status == 200 }}
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
