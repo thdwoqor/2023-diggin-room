@@ -18,7 +18,7 @@ jobs:
       - name: Notify if status is not 200
         uses: act10ns/slack@v1
         with:
-#           status: ${{ steps.check.outputs.status == '200' }}
+          status: ${{ steps.check.outputs.status != '200' }}
           steps: ${{ toJson(steps) }}
         if: ${{ steps.check.outputs.status != '200' }}
         env:
@@ -27,7 +27,7 @@ jobs:
       - name: Notify if status is 200
         uses: act10ns/slack@v1
         with:
-#           status: ${{ steps.check.outputs.status == '200' }}
+          status: ${{ steps.check.outputs.status == '200' }}
           steps: ${{ toJson(steps) }}
         if: ${{ steps.check.outputs.status == '200' }}
         env:
