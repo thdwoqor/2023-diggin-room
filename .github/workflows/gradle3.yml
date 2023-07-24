@@ -17,16 +17,24 @@ jobs:
       
       - name: Normal Slack notification
         if: steps.check.outputs.status == '200'
-        uses: act10ns/slack@v1
+        uses: slackapi/slack-github-action@v1.24.0
         with:
-          status: ${{ job.status }}
-          steps: ${{ toJson(steps) }}
-          token: ${{ secrets.SLACK_WEBHOOK_URL }} # replace this with your slack token
+          payload: |
+            {
+              "key": "value",
+              "foo": "bar"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
-      - name: Error Slack notification
+      - name: Normal Slack notification
         if: steps.check.outputs.status != '200'
-        uses: act10ns/slack@v1
+        uses: slackapi/slack-github-action@v1.24.0
         with:
-          status: failure
-          steps: ${{ toJson(steps) }}
-          token: ${{ secrets.SLACK_WEBHOOK_URL }} # replace this with your slack token
+          payload: |
+            {
+              "key": "value1",
+              "foo": "bar1"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
