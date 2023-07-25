@@ -21,22 +21,11 @@ jobs:
         uses: slackapi/slack-github-action@v1.24.0
         if: steps.check.outputs.status == '200'
         with:
+          # This data can be any valid JSON from a previous step in the GitHub Action
           payload: |
             {
-              "text": "Deployment started (In Progress)",
-              "attachments": [
-                {
-                  "pretext": "Deployment started",
-                  "color": "dbab09",
-                  "fields": [
-                    {
-                      "title": "Status",
-                      "short": true,
-                      "value": "In Progress"
-                    }
-                  ]
-                }
-              ]
+              "key": "value",
+              "foo": "bar"
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
