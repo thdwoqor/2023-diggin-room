@@ -21,11 +21,7 @@ jobs:
         uses: slackapi/slack-github-action@v1.24.0
         if: steps.check.outputs.status == '200'
         with:
-          # This data can be any valid JSON from a previous step in the GitHub Action
-          payload: |
-            {
-              "key": "value",
-              "foo": "bar"
-            }
+          channel-id: 'C05HYST2DQX'
+          slack-message: "Server Status"
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
