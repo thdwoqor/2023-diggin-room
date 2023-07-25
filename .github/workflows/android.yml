@@ -43,7 +43,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: apk-artifact
-        path: ./*
+        path: ./android/app/build/outputs/apk/debug/app-debug.apk
     
 #     - name: action-slack
 #       uses: 8398a7/action-slack@v3.8.0
