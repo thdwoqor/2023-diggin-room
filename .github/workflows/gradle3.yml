@@ -24,16 +24,7 @@ jobs:
           channel-id: 'C05HYST2DQX'
           payload: |
             {
-              "text": "GitHub Action build result:",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "GitHub Action build result"
-                  }
-                }
-              ]
+              "text": "<!channel>\n현재 서버에 연결할 수 없습니다."
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
