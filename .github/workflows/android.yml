@@ -33,9 +33,12 @@ jobs:
      
     - name: Setup Android SDK
       uses: android-actions/setup-android@v2  
+      
+    - name: Init
+      run: ./android/gradlew init
    
     - name: Build APK
-      run: bash ./android/gradlew assembleRelease --stacktrace
+      run: bash ./android/gradlew assembleRelease
       
     - run: './android/gradlew assembleRelease'
     - uses: MeilCli/slack-upload-file@v1
