@@ -27,9 +27,9 @@ jobs:
     - name: Build with Gradle
       run: ./android/gradlew build
     - name: Build APK
-      run: bash ./android/gradlew assembleDebug --stacktrace
+      run: cd android && ./gradlew assembleDebug --stacktrace
       
-    - run: './android/gradlew assembleRelease'
+    - run: './gradlew assembleRelease'
     - uses: MeilCli/slack-upload-file@v1
       with:
         slack_token: ${{ secrets.SLACK_READ_WRITE_TOKEN }}
