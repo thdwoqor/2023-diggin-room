@@ -20,9 +20,40 @@ jobs:
         java-version: '17'
         distribution: 'adopt'
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x ./android/gradlew
-    - name: Init
-      run: ./android/gradlew init
-    - name: Build with Gradle
-      run: ./android/gradlew build
+#     - name: Grant execute permission for gradlew
+#       run: chmod +x ./android/gradlew
+#     - name: Init
+#       run: ./android/gradlew init
+#     - name: Build with Gradle
+#       run: ./android/gradlew build
+
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+     
+    - name: Build APK
+      run: bash ./android/gradlew assembleRelease --stacktrace
+      
+    - run: './android/gradlew assembleRelease'
+    - uses: MeilCli/slack-upload-file@v1
+      with:
+        slack_token: ${{ secrets.SLACK_READ_WRITE_TOKEN }}
+        channels: ${{ secrets.SLACK_CHANNEL_DEPLOY }}
+        file_path: 'android/app/build/outputs/apk/release/app-release-unsigned.apk'
+        file_name: 'app-release-unsigned.apk'
+        file_type: 'apk'
+        initial_comment: '${{ github.ref }} 테스트 앱 슬랙 배포 성공'
+
+    - name: 테스트용 apk artifact 업로드
+      uses: actions/upload-artifact@v2
+      with:
+        name: app-release-unsigned.apk
+        path: android/app/build/outputs/apk/release/app-release-unsigned.apk
+    
+    - name: action-slack
+      uses: 8398a7/action-slack@v3.8.0
+      with:
+        status: ${{ job.status }}
+        author_name: 빌드 알림
+      env:
+         SLACK_WEBHOOK_URL: ${{ secrets.AN_SLACK_WEBHOOK_URL }}
