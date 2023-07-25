@@ -25,4 +25,4 @@ jobs:
     - name: Init
       run: ./android/gradlew init
     - name: Build with Gradle
-      run: ./android/gradlew build
+      run: ./android/gradlew bootjar
