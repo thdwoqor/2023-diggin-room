@@ -24,7 +24,6 @@ jobs:
             {
               "attachments": [
                 {
-                  "pretext": "Deployment started",
                   "color": "dbab09",
                   "fields": [
                     {
