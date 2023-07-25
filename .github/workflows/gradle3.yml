@@ -23,18 +23,14 @@ jobs:
           update-ts: ${{ steps.slack.outputs.ts }}
           payload: |
             {
-              "text": "Deployment finished (Completed)",
-              "attachments": [
+              "text": "GitHub Action build result2",
+              "blocks": [
                 {
-                  "pretext": "Deployment finished",
-                  "color": "dc3545",
-                  "fields": [
-                    {
-                      "title": "Status",
-                      "short": true,
-                      "value": "Completed"
-                    }
-                  ]
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "GitHub Action build result1"
+                  }
                 }
               ]
             }
