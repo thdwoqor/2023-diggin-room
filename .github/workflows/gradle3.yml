@@ -15,10 +15,12 @@ jobs:
       - name: Check
         run: echo "${{ steps.check.outputs.status }}"
 
-      - name: Error Slack notification 
+      - name: Error Slack notification
+        id: slack
         if: steps.check.outputs.status == '200'
         uses: slackapi/slack-github-action@v1.24.0
         with:
+          update-ts: ${{ steps.slack.outputs.ts }}
           payload: |
             {
               "text": "Deployment finished (Completed)",
@@ -30,7 +32,7 @@ jobs:
                     {
                       "title": "Status",
                       "short": true,
-                      "value": "${{ steps.check.outputs.status }}"
+                      "value": "Completed"
                     }
                   ]
                 }
