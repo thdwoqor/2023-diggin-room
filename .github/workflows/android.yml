@@ -31,6 +31,9 @@ jobs:
       id: date
       run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
      
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v2  
+   
     - name: Build APK
       run: bash ./android/gradlew assembleRelease --stacktrace
       
