@@ -21,16 +21,16 @@ jobs:
         with:
           payload: |
             {
-              "text": "서버 상태",
+              "text": "Deployment finished (Completed)",
               "attachments": [
                 {
-                  "pretext": "<!channel>",
-                  "color": "#dc3545",
+                  "pretext": "Deployment finished",
+                  "color": "dc3545",
                   "fields": [
                     {
-                      "title": "서버 상태",
-                      "short": false,
-                      "value": "서버가 다운되었습니다."
+                      "title": "Status",
+                      "short": true,
+                      "value": "${{ steps.check.outputs.status }}"
                     }
                   ]
                 }
