@@ -22,6 +22,18 @@ jobs:
         if: steps.check.outputs.status == '200'
         with:
           channel-id: 'C05HYST2DQX'
-          slack-message: "Server Status"
+          payload: |
+            {
+              "text": "GitHub Action build result:",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "GitHub Action build result"
+                  }
+                }
+              ]
+            }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
