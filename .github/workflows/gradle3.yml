@@ -14,41 +14,25 @@ jobs:
         run: echo "status=$(curl -o /dev/null -s -w %{http_code} https://ec2-43-200-158-138.ap-northeast-2.compute.amazonaws.com/join/exist?username=admin1234)">>$GITHUB_OUTPUT
       - name: Check
         run: echo "${{ steps.check.outputs.status }}"
-      
-      - name: Normal Slack notification
+
+      - name: Error Slack notification 
         if: steps.check.outputs.status == '200'
         uses: slackapi/slack-github-action@v1.24.0
         with:
           payload: |
             {
-              "text": "API Server Status - Normal Operations",
-              "blocks": [
+              "text": "서버 상태",
+              "attachments": [
                 {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "API Server Status - Normal Operations"
-                  }
-                }
-              ]
-            }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
-      - name: Error Slack notification 
-        if: steps.check.outputs.status != '200'
-        uses: slackapi/slack-github-action@v1.24.0
-        with:
-          payload: |
-            {
-              "text": "API Server Status - Service Interruption",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "API Server Status - Service Interruption"
-                  }
+                  "pretext": "<!channel>",
+                  "color": "#dc3545",
+                  "fields": [
+                    {
+                      "title": "서버 상태",
+                      "short": false,
+                      "value": "서버가 다운되었습니다."
+                    }
+                  ]
                 }
               ]
             }
