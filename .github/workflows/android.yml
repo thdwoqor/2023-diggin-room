@@ -22,22 +22,15 @@ jobs:
 
     - name: Grant execute permission for gradlew
       run: chmod +x ./android/gradlew
-    - name: Init
+      
+    - name: Init with Gradle
       run: ./android/gradlew init
+      
     - name: Build with Gradle
       run: ./android/gradlew build
+      
     - name: Build APK
       run: cd android && ./gradlew assembleDebug --stacktrace
-  
-#     - run: './gradlew assembleRelease'
-#     - uses: MeilCli/slack-upload-file@v1
-#       with:
-#         slack_token: ${{ secrets.SLACK_READ_WRITE_TOKEN }}
-#         channels: ${{ secrets.SLACK_CHANNEL_DEPLOY }}
-#         file_path: 'android/app/build/outputs/apk/release/app-release-unsigned.apk'
-#         file_name: 'app-release-unsigned.apk'
-#         file_type: 'apk'
-#         initial_comment: '${{ github.ref }} 테스트 앱 슬랙 배포 성공'
 
     - name: 테스트용 apk artifact 업로드
       uses: actions/upload-artifact@v3
@@ -45,7 +38,7 @@ jobs:
         name: apk-artifact
         path: ./android/app/build/outputs/apk/debug/app-debug.apk
     
-    - name: Slack - Upload APK 
+    - name: Slack 업로드 APK 
       uses: MeilCli/slack-upload-file@v1.0.0 
       with: 
         slack_token: ${{ secrets.SLACK_READ_WRITE_TOKEN }} 
@@ -54,11 +47,3 @@ jobs:
         file_type: 'apk' 
         file_name: 'app-debug.apk' 
         file_path: './android/app/build/outputs/apk/debug/app-debug.apk'
-        
-#     - name: action-slack
-#       uses: 8398a7/action-slack@v3.8.0
-#       with:
-#         status: ${{ job.status }}
-#         author_name: 빌드 알림
-#       env:
-#          SLACK_WEBHOOK_URL: ${{ secrets.AN_SLACK_WEBHOOK_URL }}
