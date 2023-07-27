@@ -22,15 +22,13 @@ jobs:
         cd android && echo "server.url=\"https://ec2-43-200-158-138.ap-northeast-2.compute.amazonaws.com/\"" > config.properties
 
     - name: Init with Gradle
-      working-directory: ./android
       run: ./android/gradlew init
       
     - name: Build with Gradle
       run: ./android/gradlew build
       
     - name: Build APK
-      working-directory: ./android
-      run: ./gradlew assembleDebug --stacktrace
+      run: ./android/gradlew assembleDebug --stacktrace
 
     - name: Slack Upload APK 
       uses: MeilCli/slack-upload-file@v1.0.0 
