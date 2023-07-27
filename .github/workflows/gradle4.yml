@@ -25,11 +25,11 @@ jobs:
 #     - name: Grant execute permission for gradlew
 #       run: chmod +x ./android/gradlew
       
-    - name: Init with Gradle
-      run: ./android/gradlew init
+#     - name: Init with Gradle
+#       run: ./android/gradlew init
       
     - name: Build with Gradle
-      run: ./android/gradlew build
+      run: cd android && ./gradlew build
       
     - name: Build APK
       run: cd android && ./gradlew assembleDebug --stacktrace
