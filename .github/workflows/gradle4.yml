@@ -21,11 +21,12 @@ jobs:
       run: |
         cd android && echo "server.url=\"https://ec2-43-200-158-138.ap-northeast-2.compute.amazonaws.com/\"" > config.properties
 
-    - name: Init with Gradle
-      run: ./android/gradlew init
+#     - name: Init with Gradle
+#       run: ./android/gradlew init
       
     - name: Build with Gradle
-      run: ./android/gradlew build
+      working-directory: ./android
+      run: ./gradlew init & ./gradlew build
       
     - name: Build APK
       working-directory: ./android
