@@ -25,7 +25,8 @@ jobs:
       run: ./android/gradlew init
       
     - name: Build with Gradle
-      run: ./android/gradlew build
+      working-directory: ./android
+      run: ./gradlew build
       
     - name: Build APK
       working-directory: ./android
