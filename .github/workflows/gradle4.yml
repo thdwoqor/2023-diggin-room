@@ -18,35 +18,35 @@ jobs:
         distribution: 'adopt'  
 
     
-#     - name: Create config.properties
-#       run: |
-#         cd android && echo "server.url=\"https://ec2-43-200-158-138.ap-northeast-2.compute.amazonaws.com/\"" > config.properties
+    - name: Create config.properties
+      run: |
+        cd android && echo "server.url=\"https://ec2-43-200-158-138.ap-northeast-2.compute.amazonaws.com/\"" > config.properties
 
-#     - name: Grant execute permission for gradlew
-#       run: chmod +x ./android/gradlew
+    - name: Grant execute permission for gradlew
+      run: chmod +x ./android/gradlew
       
-#     - name: Init with Gradle
-#       run: ./android/gradlew init
+    - name: Init with Gradle
+      run: ./android/gradlew init
       
-#     - name: Build with Gradle
-#       run: ./android/gradlew build
+    - name: Build with Gradle
+      run: ./android/gradlew build
       
-#     - name: Build APK
-#       run: cd android && ./gradlew assembleDebug --stacktrace
+    - name: Build APK
+      run: cd android && ./gradlew assembleDebug --stacktrace
 
-#     - name: 테스트용 apk artifact 업로드
-#       uses: actions/upload-artifact@v3
-#       with:
-#         name: apk-artifact
-#         path: ./android/app/build/outputs/apk/debug/app-debug.apk
+    - name: apk artifact Upload
+      uses: actions/upload-artifact@v3
+      with:
+        name: apk-artifact
+        path: ./android/app/build/outputs/apk/debug/app-debug.apk
     
-#     - name: Slack 업로드 APK 
-#       uses: MeilCli/slack-upload-file@v1.0.0 
-#       with: 
-#         slack_token: ${{ secrets.SLACK_READ_WRITE_TOKEN }} 
-#         channels: ${{ secrets.AN_SLACK_CHANNEL_DEPOLY }}
-#         initial_comment: 'APK File Upload' 
-#         file_type: 'apk' 
-#         file_name: 'app-debug.apk' 
-#         file_path: './android/app/build/outputs/apk/debug/app-debug.apk'
+    - name: Slack Upload APK 
+      uses: MeilCli/slack-upload-file@v1.0.0 
+      with: 
+        slack_token: ${{ secrets.SLACK_READ_WRITE_TOKEN }} 
+        channels: ${{ secrets.AN_SLACK_CHANNEL_DEPOLY }}
+        initial_comment: 'APK File Upload' 
+        file_type: 'apk' 
+        file_name: 'app-debug.apk' 
+        file_path: './android/app/build/outputs/apk/debug/app-debug.apk'
          
