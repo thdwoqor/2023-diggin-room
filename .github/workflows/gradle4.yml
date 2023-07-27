@@ -23,7 +23,7 @@ jobs:
     
     - name: Create config.properties
       run: |
-        cd android && echo "server.url=\"${{ secrets.SERVER_URL }}\"" > config.properties
+        cd android && echo "server.url=\"https://ec2-43-200-158-138.ap-northeast-2.compute.amazonaws.com/\"" > config.properties
 
     - name: Grant execute permission for gradlew
       run: chmod +x ./android/gradlew
