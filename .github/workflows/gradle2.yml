@@ -1,23 +1,23 @@
-name: Java CI 
+# name: Java CI 
 
-on:
-  workflow_dispatch:
-  push:
-  pull_request:
-permissions:
-  contents: read
-jobs:
-  deploy:
-    runs-on: self-hosted
-    steps:
-      - uses: actions/checkout@v3
-      - name: gradle bootjar
-        working-directory: ./backend
-        run: |
-          chmod +x ./gradlew
-          ./gradlew bootjar
+# on:
+#   workflow_dispatch:
+#   push:
+#   pull_request:
+# permissions:
+#   contents: read
+# jobs:
+#   deploy:
+#     runs-on: self-hosted
+#     steps:
+#       - uses: actions/checkout@v3
+#       - name: gradle bootjar
+#         working-directory: ./backend
+#         run: |
+#           chmod +x ./gradlew
+#           ./gradlew bootjar
         
-      - name: deploy
-        working-directory: ./backend
-        run: |
-          nohup java -jar build/libs/DigginRoom-0.0.1-SNAPSHOT.jar &
+#       - name: deploy
+#         working-directory: ./backend
+#         run: |
+#           nohup java -jar build/libs/DigginRoom-0.0.1-SNAPSHOT.jar &
