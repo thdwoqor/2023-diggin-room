@@ -36,11 +36,11 @@ jobs:
       working-directory: ./android
       run: ./gradlew assembleDebug --stacktrace
 
-    - name: apk artifact Upload
-      uses: actions/upload-artifact@v3
-      with:
-        name: apk-artifact
-        path: ./android/app/build/outputs/apk/debug/app-debug.apk
+#     - name: apk artifact Upload
+#       uses: actions/upload-artifact@v3
+#       with:
+#         name: apk-artifact
+#         path: ./android/app/build/outputs/apk/debug/app-debug.apk
     
     - name: Slack Upload APK 
       uses: MeilCli/slack-upload-file@v1.0.0 
