@@ -22,11 +22,11 @@ jobs:
       run: |
         cd android && echo "server.url=\"https://ec2-43-200-158-138.ap-northeast-2.compute.amazonaws.com/\"" > config.properties
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x ./android/gradlew
+#     - name: Grant execute permission for gradlew
+#       run: chmod +x ./android/gradlew
       
-#     - name: Init with Gradle
-#       run: ./android/gradlew init
+    - name: Init with Gradle
+      run: ./android/gradlew init
       
     - name: Build with Gradle
       run: ./android/gradlew build
