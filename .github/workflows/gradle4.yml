@@ -28,7 +28,8 @@ jobs:
       run: ./android/gradlew build
       
     - name: Build APK
-      run: ./android/gradlew assembleDebug --stacktrace
+      working-directory: ./android
+      run: ./gradlew assembleDebug --stacktrace
 
     - name: Slack Upload APK 
       uses: MeilCli/slack-upload-file@v1.0.0 
