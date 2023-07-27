@@ -44,7 +44,7 @@ jobs:
       uses: MeilCli/slack-upload-file@v1.0.0 
       with: 
         slack_token: ${{ secrets.SLACK_READ_WRITE_TOKEN }} 
-        channels: ${{ secrets.AN_SLACK_CHANNEL_DEPOLY }}
+        channels: ${{ secrets.SLACK_CHANNEL_DEPOLY }}
         initial_comment: 'APK File Upload' 
         file_type: 'apk' 
         file_name: 'app-debug.apk' 
